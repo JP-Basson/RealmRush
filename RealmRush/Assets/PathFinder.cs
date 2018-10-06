@@ -16,6 +16,8 @@ public class PathFinder : MonoBehaviour
 
     Waypoint searchCenter;
 
+    public List<Waypoint> path = new List<Waypoint>();
+
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -28,10 +30,29 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         ColorStartAndEnd();
-        PathFind();
+        BreadthFirstSearch();
+        CreatePath();
+
     }
 
-    private void PathFind()
+  private void CreatePath()
+  {
+    path.Add(endWayPoint);
+
+    Waypoint previous = endWayPoint.exploredFrom;
+
+    while (previous != startWayPoint) {
+        // add intermediate way points
+        path.Add(endWayPoint);
+        previous = previous.exploredFrom;
+    }
+
+    path.Add(startWayPoint);
+
+    // var shortestPath = path.Reverse();
+  }
+
+  private void BreadthFirstSearch()
     {
         queue.Enqueue(startWayPoint);
 

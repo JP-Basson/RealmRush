@@ -20,6 +20,7 @@ public class Waypoint : MonoBehaviour {
 
     public Vector2Int GetGridPos()
     {
+        // todo concider moving out
         return new Vector2Int(
         Mathf.RoundToInt(transform.position.x / gridSize),
         Mathf.RoundToInt(transform.position.z / gridSize)
